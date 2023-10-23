@@ -1,23 +1,39 @@
-import React from 'react';
-import {Hello} from './Hello.jsx';
-import {Info} from './Info.jsx';
-import {ChakraProvider, ColorModeScript, extendTheme, Heading} from '@chakra-ui/react';
+import React from "react";
+import { ChakraProvider, ColorModeScript, extendTheme } from "@chakra-ui/react";
+import Header from "./Header.jsx";
+import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Home from "./Home.jsx";
+import LoginForm from "./LoginForm.jsx";
+import SignupForm from "./SignupForm.jsx";
+import CreateNote from "./CreateNote.jsx";
 
 const theme = extendTheme({
   config: {
-    initialColorMode: 'dark',
+    initialColorMode: "dark",
     useSystemColorMode: false,
   },
 });
 
 export const App = () => {
+  const [user, setUser] = useState(null);
+
   return (
     <>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode}/>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <ChakraProvider theme={theme}>
-        <Heading as='h1' size='4xl'>Welcome to Meteor!</Heading>
-        <Hello/>
-        <Info/>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Header />}>
+              <Route index element={<Home />} />
+              <Route path="/login" element={<LoginForm />} />
+              <Route path="/signup" element={<SignupForm />} />
+              <Route path="/create-note" element={<CreateNote />} />
+              <Route path="*" element={<h1>404</h1>} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </ChakraProvider>
     </>
   );
