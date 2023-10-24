@@ -18,12 +18,15 @@ const Header = ({ user }) => {
     <>
       <Flex minWidth="max-content" alignItems="center" gap="2">
         <Box p="2">
-          <Heading size="md">Notes App</Heading>
+          <Heading>Notes App</Heading>
         </Box>
         <Spacer />
         {loggedUser || isLoadingUser ? (
           <>
             <ButtonGroup gap="2">
+              <Button as={Link} to={"/create"} colorScheme="teal">
+                Créer une note
+              </Button>
               <Button
                 as={Link}
                 to={"/"}

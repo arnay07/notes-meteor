@@ -12,7 +12,7 @@ import { useState } from "react";
 import { Accounts } from "meteor/accounts-base";
 import { useNavigate } from "react-router-dom";
 
-const SignupForm = ({ handleLogin }) => {
+const SignupForm = ({}) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -33,7 +33,7 @@ const SignupForm = ({ handleLogin }) => {
           setTimeout(() => setError(""), 3000);
         } else {
           console.log("successfully created user");
-          navigate("/");
+          navigate("/notes");
         }
       }
     );

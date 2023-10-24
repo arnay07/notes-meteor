@@ -8,10 +8,11 @@ import Home from "./Home.jsx";
 import LoginForm from "./LoginForm.jsx";
 import SignupForm from "./SignupForm.jsx";
 import CreateNote from "./CreateNote.jsx";
+import Notes from "./Notes.jsx";
 
 const theme = extendTheme({
   config: {
-    initialColorMode: "dark",
+    initialColorMode: "light",
     useSystemColorMode: false,
   },
 });
@@ -29,7 +30,8 @@ export const App = () => {
               <Route index element={<Home />} />
               <Route path="/login" element={<LoginForm />} />
               <Route path="/signup" element={<SignupForm />} />
-              <Route path="/create-note" element={<CreateNote />} />
+              <Route path="/create" element={<CreateNote />} />
+              <Route path="/notes" element={<Notes />} />
               <Route path="*" element={<h1>404</h1>} />
             </Route>
           </Routes>
@@ -38,3 +40,5 @@ export const App = () => {
     </>
   );
 };
+
+//TODO : AJOUTER le champ utilisateur dans la note

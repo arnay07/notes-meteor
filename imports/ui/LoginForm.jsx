@@ -28,7 +28,7 @@ const LoginForm = () => {
         setTimeout(() => setError(""), 3000);
       } else {
         console.log("successfully logged in");
-        navigate("/");
+        navigate("/notes");
       }
     });
   };
