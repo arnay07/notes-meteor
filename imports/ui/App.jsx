@@ -12,7 +12,7 @@ import Notes from "./Notes.jsx";
 
 const theme = extendTheme({
   config: {
-    initialColorMode: "light",
+    initialColorMode: "dark",
     useSystemColorMode: false,
   },
 });
