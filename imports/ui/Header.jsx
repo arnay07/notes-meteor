@@ -1,17 +1,17 @@
 import React from "react";
 import {
-  Flex,
   Box,
-  Heading,
-  Spacer,
   Button,
   ButtonGroup,
+  Flex,
+  Heading,
+  Spacer,
 } from "@chakra-ui/react";
-import { Outlet, Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useLoggedUser } from "meteor/quave:logged-user-react";
 import { Meteor } from "meteor/meteor";
 
-const Header = ({ user }) => {
+const Header = () => {
   const { loggedUser, isLoadingUser } = useLoggedUser();
 
   return (

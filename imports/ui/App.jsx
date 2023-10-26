@@ -39,5 +39,3 @@ export const App = () => {
     </>
   );
 };
-
-//TODO : AJOUTER le champ utilisateur dans la note
