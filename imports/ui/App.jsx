@@ -1,25 +1,23 @@
 import React from "react";
 import { ChakraProvider, ColorModeScript, extendTheme } from "@chakra-ui/react";
 import Header from "./Header.jsx";
-import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from "./Home.jsx";
 import LoginForm from "./LoginForm.jsx";
 import SignupForm from "./SignupForm.jsx";
 import CreateNote from "./CreateNote.jsx";
 import Notes from "./Notes.jsx";
+import EditNote from "./EditNote.jsx";
 
 const theme = extendTheme({
   config: {
-    initialColorMode: "dark",
+    initialColorMode: "light",
     useSystemColorMode: false,
   },
 });
 
 export const App = () => {
-  const [user, setUser] = useState(null);
-
   return (
     <>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
@@ -32,6 +30,7 @@ export const App = () => {
               <Route path="/signup" element={<SignupForm />} />
               <Route path="/create" element={<CreateNote />} />
               <Route path="/notes" element={<Notes />} />
+              <Route path="/edit/:id" element={<EditNote />} />
               <Route path="*" element={<h1>404</h1>} />
             </Route>
           </Routes>

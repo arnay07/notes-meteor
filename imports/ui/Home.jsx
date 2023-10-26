@@ -1,13 +1,15 @@
 import React from "react";
-import { Flex, Box, Heading, Text } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 
 const Home = () => {
   return (
-    <Flex marginTop={5} alignItems={"center"} flexDirection={"column"} gap={4}>
-      <Box>
-        <Heading size="md">Bienvenue sur l'application de notes</Heading>
-        <Text>Connectez-vous ou créez un compte pour commencer</Text>
-      </Box>
+    <Flex
+      marginTop={100}
+      alignItems={"center"}
+      flexDirection={"column"}
+      gap={4}
+    >
+      <Heading size="md">Bienvenue sur l'application de notes</Heading>
     </Flex>
   );
 };
