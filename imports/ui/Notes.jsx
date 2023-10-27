@@ -26,7 +26,11 @@ const Notes = () => {
     }
   }, [loggedUser, isLoadingUser]);
 
-  return (
+  return notes.length === 0 ? (
+    <Box marginTop={10}>
+      <h1>Vous n'avez pas encore de notes</h1>
+    </Box>
+  ) : (
     <Box marginTop={10}>
       {notes.map((note) => (
         <div key={note._id}>
