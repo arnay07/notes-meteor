@@ -1,25 +1,7 @@
 import { Meteor } from "meteor/meteor";
-import { NotesCollection } from "/imports/api/NotesCollection";
+import "/imports/api/NotesMethods";
+import "/imports/api/NotesPublications";
 
 Meteor.startup(() => {
-  if (NotesCollection.find().count() === 0) {
-    NotesCollection.insert({
-      title: "First Note",
-      body: "This is the body of the first note",
-      createdAt: new Date(),
-      isImportant: true,
-    });
-    NotesCollection.insert({
-      title: "Second Note",
-      body: "This is the body of the second note",
-      createdAt: new Date(),
-      isImportant: false,
-    });
-    NotesCollection.insert({
-      title: "Third Note",
-      body: "This is the body of the third note",
-      createdAt: new Date(),
-      isImportant: false,
-    });
-  }
+  console.log("Démarrage du serveur...");
 });

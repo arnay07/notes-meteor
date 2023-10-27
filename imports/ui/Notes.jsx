@@ -1,12 +1,16 @@
 import React from "react";
 import { Box, Spacer } from "@chakra-ui/react";
 import { useTracker } from "meteor/react-meteor-data";
-import { NotesCollection } from "../api/NotesCollection";
 import Note from "./Note";
+import { NotesCollection } from "../api/NotesCollection";
 import { Meteor } from "meteor/meteor";
 
 const Notes = () => {
   const notes = useTracker(() => {
+    const handler = Meteor.subscribe("notes");
+    if (!handler.ready()) {
+      return [];
+    }
     return NotesCollection.find(
       { userId: Meteor.userId() },
       { sort: { createdAt: -1 } }

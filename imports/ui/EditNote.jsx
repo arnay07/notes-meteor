@@ -3,6 +3,7 @@ import NoteForm from "./NoteForm";
 import { useNavigate, useParams } from "react-router-dom";
 import { NotesCollection } from "../api/NotesCollection";
 import { useTracker } from "meteor/react-meteor-data";
+import { Meteor } from "meteor/meteor";
 
 const EditNote = () => {
   const { id } = useParams();
@@ -19,15 +20,23 @@ const EditNote = () => {
 
     if (!body && !title) return;
 
-    NotesCollection.update(id, {
-      $set: {
+    Meteor.call(
+      "notes.update",
+      id,
+      {
         title: title.trim(),
         body: body.trim(),
         isImportant: isImportant,
       },
-    });
-
-    navigate("/notes");
+      (err) => {
+        if (err) {
+          console.log("error updating note: " + err);
+        } else {
+          console.log("successfully updated note");
+          navigate("/notes");
+        }
+      }
+    );
   };
 
   return (

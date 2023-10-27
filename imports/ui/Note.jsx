@@ -1,20 +1,25 @@
 import React from "react";
 import {
+  Badge,
   Box,
+  Button,
+  ButtonGroup,
+  Flex,
   Heading,
   Spacer,
   Text,
-  Flex,
-  Button,
-  ButtonGroup,
-  Badge,
 } from "@chakra-ui/react";
-import { NotesCollection } from "../api/NotesCollection";
 import { useNavigate } from "react-router-dom";
 
 const Note = ({ note }) => {
   const deleteNote = (noteId) => {
-    NotesCollection.remove(noteId);
+    Meteor.call("notes.remove", noteId, (err) => {
+      if (err) {
+        console.log("error deleting note: " + err);
+      } else {
+        console.log("successfully deleted note");
+      }
+    });
   };
 
   const navigate = useNavigate();

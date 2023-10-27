@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { NotesCollection } from "../api/NotesCollection";
 import { useNavigate } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import NoteForm from "./NoteForm";
@@ -16,15 +15,22 @@ const CreateNote = () => {
 
     if (!body && !title) return;
 
-    NotesCollection.insert({
-      title: title.trim(),
-      body: body.trim(),
-      createdAt: new Date(),
-      isImportant: isImportant,
-      userId: Meteor.userId(),
-    });
-
-    navigate("/notes");
+    Meteor.call(
+      "notes.insert",
+      {
+        title: title.trim(),
+        body: body.trim(),
+        isImportant: isImportant,
+      },
+      (err) => {
+        if (err) {
+          console.log("error creating note: " + err);
+        } else {
+          console.log("successfully created note");
+          navigate("/notes");
+        }
+      }
+    );
   };
 
   return (
