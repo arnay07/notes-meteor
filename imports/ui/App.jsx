@@ -11,6 +11,7 @@ import Notes from "./Notes.jsx";
 import EditNote from "./EditNote.jsx";
 import { AuthenticatedOnly } from "./AuthenticatedOnly";
 import { AnonymousOnly } from "./AnonymousOnly";
+import { NotFound } from "./NotFound";
 
 const theme = extendTheme({
   config: {
@@ -75,7 +76,7 @@ export const App = () => {
                   </AuthenticatedOnly>
                 }
               />
-              <Route path="*" element={<h1>404</h1>} />
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>
