@@ -7,12 +7,18 @@ import {
   Heading,
   Spacer,
 } from "@chakra-ui/react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useLoggedUser } from "meteor/quave:logged-user-react";
 import { Meteor } from "meteor/meteor";
 
 const Header = () => {
   const { loggedUser, isLoadingUser } = useLoggedUser();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    Meteor.logout();
+    navigate("/");
+  };
 
   return (
     <>
@@ -24,15 +30,10 @@ const Header = () => {
         {loggedUser || isLoadingUser ? (
           <>
             <ButtonGroup gap="2">
-              <Button as={Link} to={"/create"} colorScheme="teal">
+              <Button onClick={() => navigate("/create")} colorScheme="teal">
                 Créer une note
               </Button>
-              <Button
-                as={Link}
-                to={"/"}
-                onClick={() => Meteor.logout()}
-                colorScheme="teal"
-              >
+              <Button onClick={logout} colorScheme="teal">
                 Se déconnecter
               </Button>
             </ButtonGroup>
@@ -40,10 +41,10 @@ const Header = () => {
         ) : (
           <>
             <ButtonGroup gap="2">
-              <Button as={Link} to={"/signup"} colorScheme="teal">
+              <Button onClick={() => navigate("/signup")} colorScheme="teal">
                 S'inscrire
               </Button>
-              <Button as={Link} to={"/login"} colorScheme="teal">
+              <Button onClick={() => navigate("/login")} colorScheme="teal">
                 Se connecter
               </Button>
             </ButtonGroup>
